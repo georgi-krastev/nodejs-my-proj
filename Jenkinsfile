@@ -10,6 +10,11 @@ pipeline {
     
     triggers {
         githubPush()
+        dockerTool 'docker'
+    }
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('my_dockerhub_credentials')
+        IMAGE_NAME = 'georgikrastev/mynodejsapp'
     }
 
     stages {
@@ -33,6 +38,25 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'npm test' //This is for testing the nodejs modules
+            }
+        }
+        stage('Docker login'){
+            steps {
+                sh 'docker login'
+            }
+
+        }
+
+        stage('Docker build and tag') {
+            steps {
+                sh 'docker build -t ${IMAGE_NAME} -f Dockerfile .'
+                sh 'docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${BUILD_NUMBER}'
+            }
+        }
+
+        stage('Docker Push') {
+            steps {
+                sh 'docker push ${IMAGE_NAME}:${BUILD_NUMBER}'
             }
         }
         stage('Deploy') {
