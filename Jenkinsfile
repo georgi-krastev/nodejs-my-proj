@@ -42,7 +42,7 @@ pipeline {
         }
         stage('Docker login'){
             steps {
-                sh 'docker login'
+               sh 'docker login -u $DOCKERHUB_CREDENTIALS -p $DOCKERHUB_CREDENTIALS'
             }
 
         }
