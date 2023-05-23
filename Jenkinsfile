@@ -6,6 +6,7 @@ pipeline {
 
     tools {
         nodejs 'nodejs'
+        dockerTool 'docker'
     }
     
     triggers {
