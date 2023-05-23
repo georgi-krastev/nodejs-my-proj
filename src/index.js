@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
       <head>
         <style>
           body {
-            background-color: blue;
+            background-color: green;
           }
         </style>
       </head>
