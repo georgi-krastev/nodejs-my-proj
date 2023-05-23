@@ -10,7 +10,7 @@ pipeline {
     
     triggers {
         githubPush()
-        dockerTool 'docker'
+        
     }
     environment {
         DOCKERHUB_CREDENTIALS = credentials('my_dockerhub_credentials')
