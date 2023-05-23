@@ -1,7 +1,7 @@
 pipeline {
 
     agent {
-        label 'group1'
+        label 'my-ssh-agent-2'
     }
 
     tools {
@@ -18,7 +18,7 @@ pipeline {
 
         stage('Clone Repo') {
             steps {
-                git branch: 'main', url: 'https://github.com/stoenpav/nodejs-my-proj.git'
+                git branch: 'main', url: 'https://github.com/georgi-krastev/nodejs-my-proj.git'
             }
         }
         stage('Build') {
